@@ -17,6 +17,8 @@ const styles = {
   
 }
 
+let price = 0;
+
 class Order extends Component{
 
   constructor(props){
@@ -28,7 +30,6 @@ class Order extends Component{
       nonMeat:[],
       pop:false,
       promo:this.props.promo,
-      price:0
     };
 
     this.toggleMeatTopping    = this.toggleMeatTopping.bind(this);
@@ -94,7 +95,7 @@ class Order extends Component{
       nonMeat:[],
       pop:false
     });
-    this.props.handleOrder(this.state);
+    this.props.handleOrder({...this.state, price:price});
   }
   getOrderTotal(){
     if( this.state.size === "") return -1;
@@ -105,12 +106,12 @@ class Order extends Component{
     const nmtp = this.state.nonMeat.length*menu.toppings.nonMeat.price;
     const pop = (this.state.pop?menu.pop.price:0);
     if(this.state.size ==="large" && this.state.promo){
-      this.state.price =menu.promoPrice;
+      price =menu.promoPrice;
 
       return menu.promoPrice;
     }
     
-    this.state.price=pizza_price+mtp+nmtp+pop;
+    price=pizza_price+mtp+nmtp+pop;
 
     
 
@@ -166,8 +167,8 @@ class Order extends Component{
 
         <Typography variant="h5" gutterBottom>Pop?</Typography>
         <TopicButton 
-          selected={this.state.pop} 
-          onClick={this.togglePop}
+          selected = {this.state.pop} 
+          onClick  = {this.togglePop}
           disabled = {this.state.size===""}  
         >
           Add pop
@@ -189,4 +190,4 @@ class Order extends Component{
   }
 }
 
-export default withStyles(styles) (Order);
+export default withStyles(styles)(Order);
