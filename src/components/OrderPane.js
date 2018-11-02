@@ -121,7 +121,6 @@ class Order extends Component{
     const {toppings} = menu;
     const {classes}  = this.props;
     const total = this.getOrderTotal();
-    console.log((this.state.promo?"promo order":"regular"))
     return(
       <div className={classes.root}>
         
@@ -135,7 +134,6 @@ class Order extends Component{
         {
           toppings.nonMeat.options.map(
           (val)=>{
-            console.log(this.state.nonMeat);
             let index = this.state.nonMeat.indexOf(val);
           
             return <TopicButton 
@@ -152,7 +150,6 @@ class Order extends Component{
         {
           toppings.meat.options.map(
             (val)=>{
-              console.log(this.state.meat);
               let index = this.state.meat.indexOf(val);
             
               return (<TopicButton 

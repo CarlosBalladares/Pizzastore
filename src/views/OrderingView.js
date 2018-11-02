@@ -70,8 +70,6 @@ class OrderingView extends Component{
   }
 
   removeOrder(order){
-    console.log("removing");
-    console.log(this.state.orders[order]);
     if(order<0 || order>this.state.orders.length-1) return;
 
     let orders = [...this.state.orders];
@@ -93,7 +91,6 @@ class OrderingView extends Component{
     }else{
       redeemButton=null;
     }
-    console.log((this.state.isPromOrder?"promo order":"regular"))
     return(
       <div className={classes.root}>
         <Typography variant="h2"> Make your order</Typography>
